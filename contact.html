@@ -37,36 +37,30 @@
     
 	
 	<!-- JS for contact US -->
-	    <script src="js/dist/aws-sdk.min.js"></script>
-    <script type="text/javascript">
-        var LPAWS = {};
+    <script>
+        function submit_by_id() {
+                 
+var name = document.getElementById("name").value;
+var email = document.getElementById("email").value;
+var phone = document.getElementById("phone").value;
+var content = document.getElementById("content").value;
 
-       
-        // Initialize the Amazon Cognito credentials provider
-CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-    getApplicationContext(),
-    "us-east-2:03c0caf6-5b82-400f-8fb8-6c601ac75327", // Identity pool ID
-    Regions.US_EAST_2 // Region
-);
-
-        LPAWS.sendToTopic = function() {
-            var sns = new AWS.SNS();
-            var params = {
-                //Message: 'Hello topic', /* required */
-                Message: document.querySelector('#input-msg').value,
-                Subject: 'Browser SNS publish - contact form',
-                TopicArn: 'arn:aws:sns:us-east-2:304848309527:website-contact-form'
-            };
-            sns.publish(params, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-            });
-        };
-    </script>
+const url = "https://4x0w127ex7.execute-api.us-west-2.amazonaws.com/vansoft-website-contact"
+ const data = { name: name, email: email, phone: phone, content:content }
+ 
+ fetch(url, {
+   method: 'POST',
+   //mode: 'no-cors',
+   body: JSON.stringify(data), 
+ })
+   .then(res => res.json())
+   .catch(error => console.error('Error:', error))
+   .then(response => console.log('Success:', response));
+}
+</script>
 	<!-- JS for contact us form -->
 	</head>
     <body>
-        
         <!--================Header Menu Area =================-->
         <header class="main_menu_area">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -107,25 +101,25 @@ CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCreden
             <div class="container">
                 <div class="row get_touch_inner">
                     <div class="col-lg-6">
-                          <form class="contact_us_form row" action="us-east-2:304848309527:website-contact-form" method="post" id="contactForm" >
+                          <form class="contact_us_form row" action="#" method="post" id="contactForm" >
                             <div class="form-group col-lg-6">
-							<label for="nameInputEmail1">Name</label>
-                                <input type="text" class="form-control" id="id="nameInputEmail1" name="name" placeholder="Name">
+							<label for="nameInputName">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                             </div>
                             <div class="form-group col-lg-6">
 							<label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
                             <div class="form-group col-lg-12">
 							<label for="phoneInputEmail1">Phone number</label>
-                                <input type="text" class="form-control" id="phoneInputEmail1" name="subject" placeholder="Phone Number*">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number*">
                             </div>
                             <div class="form-group col-lg-12">
 							<label for="messageInputEmail1">Message</label>
-                                <textarea class="form-control" name="message" id="messageInputEmail1" rows="1" placeholder="Message"></textarea>
+                                <textarea class="form-control" name="content" id="content" rows="1" placeholder="Message"></textarea>
                             </div>
                             
-								<button type="submit" class="btn btn-primary" onclick="LPAWS.sendToTopic(); return false;"
+								<button type="submit" class="btn btn-primary" onclick="submit_by_id()"
 								data-badge="inline" >Submit</button>
                         </form>
                     </div>
