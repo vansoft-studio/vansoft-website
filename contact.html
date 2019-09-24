@@ -1,274 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>Vansoft | Contact us</title>
 
-        <!-- Icon css link -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Rev slider css -->
-        <link href="vendors/revolution/css/settings.css" rel="stylesheet">
-        <link href="vendors/revolution/css/layers.css" rel="stylesheet">
-        <link href="vendors/revolution/css/navigation.css" rel="stylesheet">
-        
-        <!-- Extra plugin css -->
-        <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
-        <link href="vendors/magnify-popup/magnific-popup.css" rel="stylesheet">
-        
-        
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/responsive.css" rel="stylesheet">
-        <link href="css/new.css" rel="stylesheet">
+<head>
+    <meta name="title" content="Contact Us| Get in touch with best website design company">
+    <meta name="description"
+        content="Are you looking for the best web app development company? Vansoft is here! Get in touch with us Let's discuss working together for better software services">
+    <meta name="keywords"
+        content="website design, Best software company in Vancouver, mobile app development company, website development in Vancouver, IOS app development in Canada, Android app development in India, IOT service providing company in Vancouver, IOT implementation in India,Cloud providers in Vancouver">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <link rel="icon" href="img/fav-icon.png" type="image/x-icon" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+
+    <!-- Icon css link -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Rev slider css -->
+    <link href="vendors/revolution/css/settings.css" rel="stylesheet">
+    <link href="vendors/revolution/css/layers.css" rel="stylesheet">
+    <link href="vendors/revolution/css/navigation.css" rel="stylesheet">
+
+    <!-- Extra plugin css -->
+    <link href="vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="vendors/magnify-popup/magnific-popup.css" rel="stylesheet">
+
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+    <link href="css/new.css" rel="stylesheet">
+    <link href="css/sweetalert.css" rel="stylesheet" type="text\css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-    
-	
-	<!-- JS for contact US -->
-	    <script src="js/dist/aws-sdk.min.js"></script>
-    <script type="text/javascript">
-        var LPAWS = {};
+    <!-- implimenting sweetalert-->
+    <script src="js/sweetalert.min.js"></script>
 
-       
-        // Initialize the Amazon Cognito credentials provider
-CognitoCachingCredentialsProvider credentialsProvider = new CognitoCachingCredentialsProvider(
-    getApplicationContext(),
-    "us-east-2:03c0caf6-5b82-400f-8fb8-6c601ac75327", // Identity pool ID
-    Regions.US_EAST_2 // Region
-);
+    <!-- JS for contact US -->
+    <script>
+        function submit_by_id() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var phone = document.getElementById("phone").value;
+            var content = document.getElementById("content").value;
+            if (name == false || email == false || phone == false || content == false) {
+                return false;
+            }
+            else {
+                const url = "https://4x0w127ex7.execute-api.us-west-2.amazonaws.com/vansoft-website-contact"
+                const data = { name: name, email: email, phone: phone, content: content }
+                fetch(url, {
+                    method: 'POST',
+                    //mode: 'no-cors',
+                    body: JSON.stringify(data),
 
-        LPAWS.sendToTopic = function() {
-            var sns = new AWS.SNS();
-            var params = {
-                //Message: 'Hello topic', /* required */
-                Message: document.querySelector('#input-msg').value,
-                Subject: 'Browser SNS publish - contact form',
-                TopicArn: 'arn:aws:sns:us-east-2:304848309527:website-contact-form'
-            };
-            sns.publish(params, function(err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else     console.log(data);           // successful response
-            });
-        };
+                })
+                    .then(res => res.json())
+                    .catch(error => console.error('Error:', error))
+                    .then(response => swal("Thank you!", "We will get back to you soon", "success"))
+            }
+        }
     </script>
-	<!-- JS for contact us form -->
-	</head>
-    <body>
-        
-        <!--================Header Menu Area =================-->
-        <header class="main_menu_area">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#"><img src="img/logo.png" alt=""></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+    <!-- JS for contact us form -->
+</head>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="blog.html">FAQ</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!--================End Header Menu Area =================-->
-        
-        <!--================Banner Area =================-->
-        <section class="banner_area">
-            <div class="container">
-                <div class="banner_inner_text">
-                    <h2>Contact</h2>
-                    <p>Get in touch</p>
-                </div>
+<body>
+
+    <!--================Header Menu Area =================-->
+    <header class="main_menu_area">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item "><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
             </div>
-        </section>
-        <!--================End Banner Area =================-->
-        
-        <!--================Get in Touch Area =================-->
-        <section class="get_in_touch_area p_100">
-            <div class="container">
-                <div class="row get_touch_inner">
-                    <div class="col-lg-6">
-                          <form class="contact_us_form row" action="us-east-2:304848309527:website-contact-form" method="post" id="contactForm" >
-                            <div class="form-group col-lg-6">
-							<label for="nameInputEmail1">Name</label>
-                                <input type="text" class="form-control" id="id="nameInputEmail1" name="name" placeholder="Name">
-                            </div>
-                            <div class="form-group col-lg-6">
-							<label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
-                            </div>
-                            <div class="form-group col-lg-12">
-							<label for="phoneInputEmail1">Phone number</label>
-                                <input type="text" class="form-control" id="phoneInputEmail1" name="subject" placeholder="Phone Number*">
-                            </div>
-                            <div class="form-group col-lg-12">
-							<label for="messageInputEmail1">Message</label>
-                                <textarea class="form-control" name="message" id="messageInputEmail1" rows="1" placeholder="Message"></textarea>
-                            </div>
-                            
-								<button type="submit" class="btn btn-primary" onclick="LPAWS.sendToTopic(); return false;"
-								data-badge="inline" >Submit</button>
-                        </form>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="touch_details">
-                            <div class="l_title">
-                                <img src="img/icon/title-icon.png" alt="">
-                                <h6>Say hello</h6>
-                                <h2>Get in touch, send us an e-mail or call us</h2>
-                            </div>
-                            
-                            <a href="tel:+17788777521"><h5>Call us now</h5></a>
-                            <a href="tel:+17788777521"><h4>+1 778 877 7521</h4></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!--================End Get in Touch Area =================-->
-        
-        <!--================Footer Area =================-->
-<footer class="footr_area">
-    <div class="footer_widget_area">
+        </nav>
+    </header>
+    <!--================End Header Menu Area =================-->
+
+    <!--================Banner Area =================-->
+    <section class="banner_area">
         <div class="container">
-            <div class="row footer_widget_inner">
-                <div class="col-lg-4 col-sm-6">
-                    <aside class="f_widget f_about_widget">
-                        <img src="img/logo.png" alt="">
-                        <p>Vansoft is a premier mobile app development company with expertise in iPhone, Android, Hybrid and Windows App Development. We schedule project delivery time as per the scope of the project.</p>
-                    </aside>
+            <div class="banner_inner_text">
+                <h2>Contact</h2>
+                <p>Get in touch</p>
+            </div>
+        </div>
+    </section>
+    <!--================End Banner Area =================-->
+
+    <!--================Get in Touch Area =================-->
+    <section class="get_in_touch_area p_100">
+        <div class="container">
+            <div class="row get_touch_inner">
+                <div class="col-lg-6">
+                    <form class="contact_us_form row" action="#" method="post" id="contactForm">
+                        <div class="form-group col-lg-6">
+                            <label for="nameInputEmail1">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="phoneInputEmail1">Phone number</label>
+                            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone Number*">
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <label for="messageInputEmail1">Message</label>
+                            <textarea class="form-control" name="content" id="content" rows="1"
+                                placeholder="Message"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" onclick="submit_by_id()"
+                            data-badge="inline">Submit</button>
+                    </form>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a>
-                        </li>
-                        <li><a href="#">About Us</a>
-                        </li>
-                        <li><a href="#">Services</a>
-                        </li>
-                        <li><a href="#">Portfolio</a>
-                        </li>
-                        <li><a href="#">FAQ</a>
-                        </li>
-                        <li><a href="#">Contact</a>
-                        </li>
-                    </ul>
+                <div class="col-lg-6">
+                    <div class="touch_details">
+                        <div class="l_title">
+                            <img src="img/icon/title-icon.png" alt="">
+                            <h6>Say hello</h6>
+                            <h2>Get in touch, send us an e-mail or call us</h2>
+                        </div>
+
+                        <a href="tel:+17788777521">
+                            <h5>Call us now</h5>
+                        </a>
+                        <a href="tel:+17788777521">
+                            <h4>+1 778 877 7521</h4>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-lg-4 col-sm-6">
-                    <div class="cnt-wrap">
+            </div>
+        </div>
+    </section>
+    <!--================End Get in Touch Area =================-->
+
+    <!--================Footer Area =================-->
+    <footer class="footr_area">
+        <div class="footer_widget_area">
+            <div class="container">
+                <div class="row footer_widget_inner">
+                    <div class="col-lg-4 col-sm-6">
+                        <aside class="f_widget f_about_widget">
+                            <img src="img/logo.png" alt="">
+                            <p>Vansoft is a premier mobile app development company with expertise in iPhone, Android,
+                                Hybrid and Windows App Development. We schedule project delivery time as per the scope
+                                of the project.</p>
+                        </aside>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <ul class="footer-links">
+                            <li><a href="index.html">Home</a>
+                            </li>
+                            <li><a href="about-us.html">About Us</a>
+                            </li>
+                            <li><a href="service.html">Services</a>
+                            </li>
+                            <li><a href="portfolio.html">Portfolio</a>
+                            </li>
+                            <li><a href="pricing.html">Pricing</a>
+                            </li>
+                            <li><a href="contact.html">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="cnt-wrap">
                             <h4>VanSoft Studio</h4>
                             <p>Greater Vancouver Software Studio</p>
                             <p>17855 59th Avenue </p>
                             <p>Surrey, BC V3S 1P6<br />Canada</p>
-                            <h5><a href="#">+1 778 877 7521</a> <a href="#">contact@vansoft.studio</a></h5>
-                        <div class="ftr-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a>
+                            <h5>+1 778 877 7521 <a href="contact.html">contact@vansoft.studio</a></h5>
+                            <div class="ftr-icons"><a
+                                    href="https://www.facebook.com/Vansoft-109993740401672/?modal=admin_todo_tour"><i
+                                        class="fa fa-facebook"></i>
+                                    <a href="https://twitter.com/vansoft2"><i class="fa fa-twitter"></i></a><a
+                                        href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer_copyright">
-        <div class="container">
-            <div class="float-sm-left">
-                <h5>Copyright &copy; All rights reserved </h5>
-            </div>
-        </div>
-    </div>
-</footer>
-        <!--================End Footer Area =================-->
-        
-        
-        <!--================Contact Success and Error message Area =================-->
-        <div id="success" class="modal modal-message fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-close"></i>
-                        </button>
-                        <h2>Thank you</h2>
-                        <p>Your message is successfully sent...</p>
-                    </div>
+        <div class="footer_copyright">
+            <div class="container">
+                <div class="float-sm-left">
+                    <h5>Copyright &copy; All rights reserved </h5>
                 </div>
             </div>
         </div>
+    </footer>
+    <!--================End Footer Area =================-->
 
-        <!-- Modals error -->
 
-        <div id="error" class="modal modal-message fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="fa fa-close"></i>
-                        </button>
-                        <h2>Sorry !</h2>
-                        <p> Something went wrong </p>
-                    </div>
+    <!--================Contact Success and Error message Area =================-->
+    <div id="success" class="modal modal-message fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <h2>Thank you</h2>
+                    <p>Your message is successfully sent...</p>
                 </div>
             </div>
         </div>
-        <!--================End Contact Success and Error message Area =================-->
-        
-        
-        
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <!-- Rev slider js -->
-        <script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
-        <script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-        <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-        <!-- Extra plugin css -->
-        <script src="vendors/counterup/jquery.waypoints.min.js"></script>
-        <script src="vendors/counterup/jquery.counterup.min.js"></script> 
-        <script src="vendors/counterup/apear.js"></script>
-        <script src="vendors/counterup/countto.js"></script>
-        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-        <script src="vendors/magnify-popup/jquery.magnific-popup.min.js"></script>
-        <script src="js/smoothscroll.js"></script>
-        <script src="vendors/circle-bar/circle-progress.min.js"></script>
-        <script src="vendors/circle-bar/plugins.js"></script>
-        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
-        <script src="vendors/isotope/isotope.pkgd.min.js"></script>
-        
-        <!--gmaps Js-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-        <script src="js/gmaps.min.js"></script>
-        
-        <!-- contact js -->
-        <script src="js/jquery.form.js"></script>
-        <script src="js/jquery.validate.min.js"></script>
-        <script src="js/contact.js"></script>
-        
-        <script src="js/circle-active.js"></script>
-        <script src="js/theme.js"></script>
-    </body>
+    </div>
+    <!-- Modals error -->
+    <div id="error" class="modal modal-message fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <h2>Sorry !</h2>
+                    <p> Something went wrong </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--================End Contact Success and Error message Area =================-->
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Rev slider js -->
+    <script src="vendors/revolution/js/jquery.themepunch.tools.min.js"></script>
+    <script src="vendors/revolution/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.video.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script src="vendors/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <!-- Extra plugin css -->
+    <script src="vendors/counterup/jquery.waypoints.min.js"></script>
+    <script src="vendors/counterup/jquery.counterup.min.js"></script>
+    <script src="vendors/counterup/apear.js"></script>
+    <script src="vendors/counterup/countto.js"></script>
+    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="vendors/magnify-popup/jquery.magnific-popup.min.js"></script>
+    <script src="js/smoothscroll.js"></script>
+    <script src="vendors/circle-bar/circle-progress.min.js"></script>
+    <script src="vendors/circle-bar/plugins.js"></script>
+    <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+    <script src="vendors/isotope/isotope.pkgd.min.js"></script>
+
+    <!--gmaps Js-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="js/gmaps.min.js"></script>
+
+    <!-- contact js -->
+    <script src="js/jquery.form.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/contact.js"></script>
+
+    <script src="js/circle-active.js"></script>
+    <script src="js/theme.js"></script>
+</body>
+
 </html>
